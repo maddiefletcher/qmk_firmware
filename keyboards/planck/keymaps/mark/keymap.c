@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY] = { /* Qwerty */
   {KC_TAB,       KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSPC},
   {KC_ESC,       KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT},
-  {KC_LSFT,      KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  F(0)},
+  {F(1),         KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  F(0)},
   {MOVE,         KC_LCTL,  KC_LALT,  KC_LGUI,  LOWER,    KC_SPC,   KC_SPC,   RAISE,    KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT}
 },
 
@@ -175,6 +175,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 const uint16_t PROGMEM fn_actions[] = {
   [0]  = ACTION_MODS_TAP_KEY(MOD_RSFT, KC_ENT),
+  [1]  = ACTION_MODS_TAP_KEY(MOD_LSFT, KC_CAPSLOCK),
 };
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
@@ -192,23 +193,23 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
       }
       break;
     case _ITERM:
-      return MACRODOWN(D(LALT), T(SPC), U(LALT), T(I), T(T), T(E), T(R), T(M), T(ENT), END);
+      return MACRODOWN(D(LALT), T(SPC), U(LALT), W(50), T(I), T(T), T(E), T(R), T(M), T(ENT), END);
     case _CHROME:
-      return MACRODOWN(D(LALT), T(SPC), U(LALT), T(C), T(H), T(R), T(O), T(M), T(E), T(ENT), END);
+      return MACRODOWN(D(LALT), T(SPC), U(LALT), W(50), T(C), T(H), T(R), T(O), T(M), T(E), T(ENT), END);
     case _CHROMIUM:
-      return MACRODOWN(D(LALT), T(SPC), U(LALT), T(C), T(H), T(R), T(O), T(M), T(I), T(U), T(M), T(ENT), END);
+      return MACRODOWN(D(LALT), T(SPC), U(LALT), W(50), T(C), T(H), T(R), T(O), T(M), T(I), T(U), T(M), T(ENT), END);
     case _SAFARI:
-      return MACRODOWN(D(LALT), T(SPC), U(LALT), T(S), T(A), T(F), T(A), T(R), T(I), T(ENT), END);
+      return MACRODOWN(D(LALT), T(SPC), U(LALT), W(50), T(S), T(A), T(F), T(A), T(R), T(I), T(ENT), END);
     case _DASH:
-      return MACRODOWN(D(LALT), T(SPC), U(LALT), T(D), T(A), T(S), T(H), T(ENT), END);
+      return MACRODOWN(D(LALT), T(SPC), U(LALT), W(50), T(D), T(A), T(S), T(H), T(ENT), END);
     case _SLACK:
-      return MACRODOWN(D(LALT), T(SPC), U(LALT), T(S), T(L), T(A), T(C), T(K), T(ENT), END);
+      return MACRODOWN(D(LALT), T(SPC), U(LALT), W(50), T(S), T(L), T(A), T(C), T(K), T(ENT), END);
     case _SPOTIFY:
-      return MACRODOWN(D(LALT), T(SPC), U(LALT), T(S), T(P), T(O), T(T), T(I), T(F), T(Y), T(ENT), END);
+      return MACRODOWN(D(LALT), T(SPC), U(LALT), W(50), T(S), T(P), T(O), T(T), T(I), T(F), T(Y), T(ENT), END);
     case _SOURCETREE:
-      return MACRODOWN(D(LALT), T(SPC), U(LALT), T(S), T(O), T(U), T(R), T(C), T(E), T(T), T(R), T(E), T(E), T(ENT), END);
+      return MACRODOWN(D(LALT), T(SPC), U(LALT), W(50), T(S), T(O), T(U), T(R), T(C), T(E), T(T), T(R), T(E), T(E), T(ENT), END);
     case _MAIL:
-      return MACRODOWN(D(LALT), T(SPC), U(LALT), T(M), T(A), T(I), T(L), T(ENT), END);
+      return MACRODOWN(D(LALT), T(SPC), U(LALT), W(50), T(M), T(A), T(I), T(L), T(ENT), END);
   };
   return MACRO_NONE;
 };
