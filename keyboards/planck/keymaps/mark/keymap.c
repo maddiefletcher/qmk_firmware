@@ -32,6 +32,7 @@ extern keymap_config_t keymap_config;
 #define _SPOTIFY 7
 #define _SOURCETREE 8
 #define _MAIL 9
+#define _ONEPASS 10
 
 // Macro shortcuts
 #define BACKLIGHT  M(_BACKLIGHT)
@@ -44,6 +45,7 @@ extern keymap_config_t keymap_config;
 #define SPOTIFY    M(_SPOTIFY)
 #define SOURCETREE M(_SOURCETREE)
 #define MAIL       M(_MAIL)
+#define ONEPASS   M(_ONEPASS)
 
 enum planck_keycodes {
   QWERTY = SAFE_RANGE,
@@ -75,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY] = { /* Qwerty */
   {KC_TAB,       KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSPC},
   {KC_ESC,       KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT},
-  {F(1),         KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  F(0)},
+  {KC_LSFT,      KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  F(0)},
   {MOVE,         KC_LCTL,  KC_LALT,  KC_LGUI,  LOWER,    KC_SPC,   KC_SPC,   RAISE,    KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT}
 },
 
@@ -165,7 +167,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_ADJUST] = {
-  {_______,  QWERTY, _______,  _______, RESET,   SOURCETREE, _______, _______,   ITERM, _______, SPOTIFY, KC_DEL },
+  {ONEPASS,  QWERTY, _______,  _______, RESET,   SOURCETREE, _______, _______,   ITERM, _______, SPOTIFY, KC_DEL },
   {_______, _______, SAFARI,   DASH,    _______, _______,    _______, _______, _______, SLACK,   _______, _______},
   {_______, _______, CHROMIUM, CHROME,  _______, _______,     NUMPAD,    MAIL, _______, _______, _______, _______},
   {KC_CAPS, _______, _______,  _______, _______, _______,    _______, _______, _______, _______, _______, _______}
@@ -175,7 +177,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 const uint16_t PROGMEM fn_actions[] = {
   [0]  = ACTION_MODS_TAP_KEY(MOD_RSFT, KC_ENT),
-  [1]  = ACTION_MODS_TAP_KEY(MOD_LSFT, KC_CAPSLOCK),
 };
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
@@ -210,6 +211,8 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
       return MACRODOWN(D(LALT), T(SPC), U(LALT), W(50), T(S), T(O), T(U), T(R), T(C), T(E), T(T), T(R), T(E), T(E), T(ENT), END);
     case _MAIL:
       return MACRODOWN(D(LALT), T(SPC), U(LALT), W(50), T(M), T(A), T(I), T(L), T(ENT), END);
+    case _ONEPASS:
+      return MACRODOWN(D(LALT), T(SPC), U(LALT), W(50), T(1), T(P), T(A), T(S), T(S), T(W), T(O), T(R), T(D), T(ENT), END);
   };
   return MACRO_NONE;
 };
