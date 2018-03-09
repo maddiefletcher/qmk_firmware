@@ -26,31 +26,9 @@ extern keymap_config_t keymap_config;
 
 // Macro IDs
 #define _BACKLIGHT 0
-#define _ITERM 1
-#define _CHROME 2
-#define _CHROMIUM 3
-#define _SAFARI 4
-#define _DASH 5
-#define _SLACK 6
-#define _SPOTIFY 7
-#define _SOURCETREE 8
-#define _MAIL 9
-#define _ONEPASS 10
-#define _FINDER 11
 
 // Macro shortcuts
 #define BACKLIGHT  M(_BACKLIGHT)
-#define ITERM      M(_ITERM)
-#define CHROME     M(_CHROME)
-#define CHROMIUM   M(_CHROMIUM)
-#define SAFARI     M(_SAFARI)
-#define DASH       M(_DASH)
-#define SLACK      M(_SLACK)
-#define SPOTIFY    M(_SPOTIFY)
-#define SOURCETREE M(_SOURCETREE)
-#define MAIL       M(_MAIL)
-#define ONEPASS    M(_ONEPASS)
-#define FINDER     M(_FINDER)
 
 enum planck_keycodes {
   QWERTY = SAFE_RANGE,
@@ -164,20 +142,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Adjust (Lower + Raise)
  * ,-----------------------------------------------------------------------------------.
- * |      |Qwerty|      |      | Reset|      |      |      |      |      |      | Del  |
+ * |1pass |Qwerty|      |      | Reset|Sourcetree|      |      |iterm|      |Spotify| Del  |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |      |      |Safari| Dash |Finder|      |      |      |      |Slack |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      |      |      |      |      |  Num |      |      |      |      |      |
+ * |      |      |Chromium|Chrome|      |      |  Num | Mail |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Caps |      |      |      |      |             |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_ADJUST] = {
-  {ONEPASS,  QWERTY, _______,  _______,   RESET, SOURCETREE, _______, _______,   ITERM, _______, SPOTIFY, KC_DEL },
-  {_______, _______, SAFARI,   DASH,     FINDER, _______,    _______, _______, _______, SLACK,   _______, _______},
-  {_______, _______, CHROMIUM, CHROME,  _______, _______,     NUMPAD,    MAIL, _______, _______, _______, _______},
-  {KC_CAPS, _______, _______,  _______, _______, _______,    _______, _______, _______, _______, _______, _______}
+  {HYPR(KC_TAB),  QWERTY,    _______,    _______,      RESET, HYPR(KC_T),    _______,    _______, HYPR(KC_I),    _______, HYPR(KC_P),    KC_DEL },
+  {     _______, _______, HYPR(KC_S), HYPR(KC_D), HYPR(KC_F),    _______,    _______,    _______,    _______, HYPR(KC_L),    _______,    _______},
+  {     _______, _______, HYPR(KC_X), HYPR(KC_C),    _______,    _______,     NUMPAD, HYPR(KC_M),    _______,    _______,    _______,    _______},
+  {     KC_CAPS, _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______}
 }
 
 };
@@ -205,28 +183,6 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
         unregister_code(KC_RSFT);
       }
       break;
-    case _ITERM:
-      return MACRODOWN(D(LALT), T(SPC), U(LALT), W(100), T(I), T(T), T(E), T(R), T(M), T(ENT), END);
-    case _CHROME:
-      return MACRODOWN(D(LALT), T(SPC), U(LALT), W(100), T(C), T(H), T(R), T(O), T(M), T(E), T(ENT), END);
-    case _CHROMIUM:
-      return MACRODOWN(D(LALT), T(SPC), U(LALT), W(100), T(C), T(H), T(R), T(O), T(M), T(I), T(U), T(M), T(ENT), END);
-    case _SAFARI:
-      return MACRODOWN(D(LALT), T(SPC), U(LALT), W(100), T(S), T(A), T(F), T(A), T(R), T(I), T(ENT), END);
-    case _DASH:
-      return MACRODOWN(D(LALT), T(SPC), U(LALT), W(100), T(D), T(A), T(S), T(H), T(ENT), END);
-    case _SLACK:
-      return MACRODOWN(D(LALT), T(SPC), U(LALT), W(100), T(S), T(L), T(A), T(C), T(K), T(ENT), END);
-    case _SPOTIFY:
-      return MACRODOWN(D(LALT), T(SPC), U(LALT), W(100), T(S), T(P), T(O), T(T), T(I), T(F), T(Y), T(ENT), END);
-    case _SOURCETREE:
-      return MACRODOWN(D(LALT), T(SPC), U(LALT), W(100), T(S), T(O), T(U), T(R), T(C), T(E), T(T), T(R), T(E), T(E), T(ENT), END);
-    case _MAIL:
-      return MACRODOWN(D(LALT), T(SPC), U(LALT), W(100), T(M), T(A), T(I), T(L), T(ENT), END);
-    case _ONEPASS:
-      return MACRODOWN(D(LALT), T(SPC), U(LALT), W(100), T(1), T(P), T(A), T(S), T(S), T(W), T(O), T(R), T(D), T(ENT), END);
-    case _FINDER:
-      return MACRODOWN(D(LALT), T(SPC), U(LALT), W(100), T(F), T(I), T(N), T(D), T(E), T(R), T(ENT), END);
   };
   return MACRO_NONE;
 };
