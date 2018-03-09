@@ -3,6 +3,8 @@
 
 #include "config_common.h"
 
+#define TAPPING_TERM 165
+
 #ifdef AUDIO_ENABLE
     #define STARTUP_SONG SONG(ONE_UP_SOUND)
     // #define STARTUP_SONG SONG(NO_SOUND)
